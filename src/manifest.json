@@ -15,6 +15,11 @@
           ]
       }
     ],
+    "permissions": [
+        "storage",
+        "activeTab",
+        "tabs"
+    ],
     "action": {
         "default_popup": "frontend/popup.html"
     }

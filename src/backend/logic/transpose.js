@@ -38,7 +38,7 @@ function getNoteOffset(chord) {
 
 // Retrieves chord name from semitone offset
 function getChordFromOffset(offset) {
-    return chords[offset % 12];
+    return chords[(offset + 24) % 12];
 }
 
 // Function to transpose chords by a semitone
