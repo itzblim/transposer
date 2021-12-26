@@ -5,8 +5,8 @@ Transposer is a Chrome Extension for quickly transposing chords on websites.
 
 ### High priority
 - Create a working backend
-    - Identify chords in a website
-    - Transpose chords and replace original text
+    - Identify chords in a website :white_check_mark:
+    - Transpose chords and replace original text :white_check_mark:
 - Create a working frontend
     - Allow users to select an adjustment (up/down semitones)
     - Allow users to indicate the current key and select a new key
