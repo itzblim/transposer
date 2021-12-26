@@ -9,7 +9,9 @@
               "<all_urls>"
           ],
           "js": [
-              "content.js"
+              "backend/logic/transpose.js",
+              "backend/logic/replace.js",
+              "backend/content.js"
           ]
       }
   ]
