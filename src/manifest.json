@@ -14,5 +14,8 @@
               "backend/content.js"
           ]
       }
-  ]
+    ],
+    "action": {
+        "default_popup": "frontend/popup.html"
+    }
   }
