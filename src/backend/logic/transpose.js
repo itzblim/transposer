@@ -1,8 +1,4 @@
-// Default number of semitones to transpose
-const defaultSemitones = 2;
-
-// Regular expression used for finding chords
-const regex = /\b(A|B|C|D|E|F|G)(|b|#)(|m|M|maj|Maj)(|dim)(|add)(|M)(|2|4|6|7|9|11|13)(|sus(|2|4))(|b5)(?![A-Za-z0-9#])/g
+// Provides the transpose function for transposing chords
 
 // Array of chords
 const chords = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
@@ -55,14 +51,4 @@ function transpose(chord, semitones) {
             accidentalOffset == 0
                 ? 1
                 : 2);
-}
-
-// Elements to search through
-const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, td, caption, span, a');
-
-// Iterate through elements and replace chords
-for(let i = 0; i < elements.length; i++){
-    elements[i].innerHTML = elements[i].innerHTML.replace(regex, function(x) {
-        return transpose(x, defaultSemitones);
-    });
-}
+};
