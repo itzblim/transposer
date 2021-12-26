@@ -1,5 +1,7 @@
 let increaseButton = document.getElementById("increaseButton");
 let decreaseButton = document.getElementById("decreaseButton");
+let offsetButton = document.getElementById("offsetButton");
+let resetButton = document.getElementById("resetButton");
 
 // Increase button listener
 increaseButton.addEventListener("click", async () => {
@@ -10,7 +12,7 @@ increaseButton.addEventListener("click", async () => {
         chrome.tabs.sendMessage(
             tabs[0].id,
             {from: 'popup', subject: 'increase'},
-            callback => {console.log('popup -> content, increase. callback: ' + callback)});
+            callback => {offsetButton.innerHTML = callback});
       });
 });
 
@@ -23,6 +25,19 @@ decreaseButton.addEventListener("click", async () => {
         chrome.tabs.sendMessage(
             tabs[0].id,
             {from: 'popup', subject: 'decrease'},
-            callback => {console.log('popup -> content, decrease. callback: ' + callback)});
+            callback => {offsetButton.innerHTML = callback});
       });
+});
+
+// Reset button listener
+resetButton.addEventListener("click", async () => {
+  chrome.tabs.query({
+      active: true,
+      currentWindow: true
+    }, tabs => {
+      chrome.tabs.sendMessage(
+          tabs[0].id,
+          {from: 'popup', subject: 'reset'},
+          callback => {offsetButton.innerHTML = callback});
+    });
 });

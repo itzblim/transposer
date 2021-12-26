@@ -6,14 +6,17 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
     if (msg.from === 'popup') {
         if (msg.subject === 'increase') {
             replaceChords(1);
-            response('increase command received by content');
+            response(offset);
         } else if (msg.subject === 'decrease') {
             replaceChords(-1);
-            response('decrease command received by content');
+            response(offset);
+        } else if (msg.subject === 'reset') {
+            replaceChords(-offset);
+            response(offset);
         } else {
-            response('Unknown command from popup');
+            response('unknown');
         }
     } else {
-        response('Unknown source');
+        response('unknown');
     }
 });
