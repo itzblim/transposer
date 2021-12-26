@@ -7,7 +7,7 @@ const regex = /\b(A|B|C|D|E|F|G)(|b|#)(|m|M|maj|Maj)(|dim)(|add)(|M)(|2|4|6|7|9|
 // Array of chords
 const chords = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
 
-// Function to get offsets from flats and sharps
+// Gets offsets from flats and sharps
 function getAccidentalOffset(chord) {
     return chord.length <= 1
         ? 0
@@ -18,6 +18,7 @@ function getAccidentalOffset(chord) {
                 : 0;
 }
 
+// Gets offsets from starting notes (excluding accidentals)
 function getNoteOffset(chord) {
     switch (chord.charAt(0)) {
         case 'C':
@@ -39,6 +40,7 @@ function getNoteOffset(chord) {
     }
 }
 
+// Retrieves chord name from semitone offset
 function getChordFromOffset(offset) {
     return chords[offset % 12];
 }
