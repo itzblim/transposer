@@ -10,6 +10,9 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
         } else if (msg.subject === 'decrease') {
             replaceChords(-1);
             response(offset);
+        } else if (msg.subject === 'reset') {
+            replaceChords(-offset);
+            response(offset);
         } else {
             response('unknown');
         }
