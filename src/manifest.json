@@ -1,0 +1,6 @@
+{
+    "name": "Transposer",
+    "description": "Transposer is a Chrome Extension for quickly transposing chords on websites.",
+    "version": "0.1",
+    "manifest_version": 3
+  }
