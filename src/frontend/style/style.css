@@ -1,0 +1,71 @@
+body {
+  background-color: rgb(52, 61, 70);
+  user-select: none;
+}
+
+select {
+  background-color: #777777;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 4px;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 114px;
+}
+
+button {
+  appearance: button;
+  background-color: #777777;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 4px;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: all 80ms ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+}
+
+button:disabled {
+  opacity: .5;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  background-color: #ff9900;
+  border-color: #ff9900;
+}
+
+button:active {
+  background-color: #865100;
+  border-color: #865100;
+}
+
+.off-button {
+  width: 114px;
+  cursor: default;
+}
