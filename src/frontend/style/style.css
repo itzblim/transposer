@@ -1,0 +1,108 @@
+body {
+  background-color: rgb(52, 61, 70);
+  user-select: none;
+}
+
+select {
+  background-color: #979797;
+  border: 1px solid #979797;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 4px;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 114px;
+}
+
+button {
+  appearance: button;
+  background-color: #979797;
+  border: 1px solid #979797;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 4px;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: all 80ms ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+}
+
+button:disabled {
+  opacity: .5;
+}
+
+button:focus {
+  outline: 0;
+}
+
+
+
+.off-button {
+  width: 114px;
+  cursor: default;
+}
+
+.inc-button {
+  background-color: #007c1f;
+  border: 1px solid #007c1f;
+}
+
+.inc-button:hover {
+  background-color: #00b92e;
+  border-color: #00b92e;
+}
+
+.inc-button:active {
+  background-color: #005515;
+  border-color: #005515;
+}
+
+.dec-button {
+  background-color: #960000;
+  border: 1px solid #960000;
+}
+
+.dec-button:hover {
+  background-color: #e00000;
+  border-color: #e00000;
+}
+
+.dec-button:active {
+  background-color: #550000;
+  border-color: #550000;
+}
+
+.res-button {
+  background-color: #cf6400;
+  border: 1px solid #cf6400;
+}
+
+.res-button:hover {
+  background-color: #ff9900;
+  border-color: #ff9900;
+}
+
+.res-button:active {
+  background-color: #865100;
+  border-color: #865100;
+}

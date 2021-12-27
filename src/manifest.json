@@ -21,6 +21,7 @@
         "tabs"
     ],
     "action": {
-        "default_popup": "frontend/popup.html"
+        "default_popup": "frontend/popup.html",
+        "default_title": "Transpose chords on this page"
     }
   }
