@@ -12,28 +12,20 @@ chrome.storage.sync.set({keySelect: -1}, function() {
 
 // Listen for messages from the popup.
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
-    // First, validate the message's structure.
     if (msg.from === 'popup') {
         if (msg.subject === 'increase') {
-            replaceChords(1);
-            response(offset);
+            increaseKey();
         } else if (msg.subject === 'decrease') {
-            replaceChords(-1);
-            response(offset);
+            decreaseKey();
         } else if (msg.subject === 'reset') {
-            replaceChords(-offset);
-            response(offset);
+            resetKey();
         } else if (msg.subject === 'keySelect') {
             selectKey(msg.key);
-            response(offset);
-        } else {
-            response('unknown');
         }
-    } else {
-        response('unknown');
     }
 });
 
+// Listens for updates to storage and tells popup to update itself
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     chrome.runtime.sendMessage({
         subject: 'update'

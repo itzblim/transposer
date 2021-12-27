@@ -4,6 +4,7 @@ let offsetButton = document.getElementById("offsetButton");
 let resetButton = document.getElementById("resetButton");
 let keySelector = document.getElementById("keySelector");
 
+// Updates the popup
 function updatePopup() {
   chrome.storage.sync.get(['offset'], function(result) {
     offsetButton.innerHTML = result.offset > 0
@@ -15,61 +16,40 @@ function updatePopup() {
   });
 }
 
-// Update popup whenever reopened
-updatePopup();
+// Sends messages from the popup
+function sendMessage(subject, key = 'undefined') {
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, tabs => {
+    chrome.tabs.sendMessage(
+        tabs[0].id,
+        {from: 'popup', subject: subject, key: key},
+        callback => {});
+  });
+}
 
 // Increase button listener
 increaseButton.addEventListener("click", async () => {
-    chrome.tabs.query({
-        active: true,
-        currentWindow: true
-      }, tabs => {
-        chrome.tabs.sendMessage(
-            tabs[0].id,
-            {from: 'popup', subject: 'increase'},
-            callback => {});
-      });
+    sendMessage('increase');
 });
 
 // Decrease button listener
 decreaseButton.addEventListener("click", async () => {
-    chrome.tabs.query({
-        active: true,
-        currentWindow: true
-      }, tabs => {
-        chrome.tabs.sendMessage(
-            tabs[0].id,
-            {from: 'popup', subject: 'decrease'},
-            callback => {});
-      });
+  sendMessage('decrease');
 });
 
 // Reset button listener
 resetButton.addEventListener("click", async () => {
-  chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    }, tabs => {
-      chrome.tabs.sendMessage(
-          tabs[0].id,
-          {from: 'popup', subject: 'reset'},
-          callback => {});
-    });
+  sendMessage('reset');
 });
 
 // Key selector listener
 keySelector.addEventListener("change", async () => {
-  chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    }, tabs => {
-      chrome.tabs.sendMessage(
-          tabs[0].id,
-          {from: 'popup', subject: 'keySelect', key: parseInt(keySelector.value)},
-          callback => {});
-    });
+  sendMessage('keySelect', parseInt(keySelector.value));
 });
 
+// Update listener
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.subject == 'update') {
     updatePopup();
@@ -80,3 +60,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     keySelector.remove(0);
   }
 });
+
+// Update popup whenever reopened
+updatePopup();
