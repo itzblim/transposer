@@ -8,11 +8,13 @@ Transposer is a Chrome Extension for quickly transposing chords on websites.
 - Automatically detects all chords:
     - Support for major, minor, diminished, added, sustained chords, chord inversions and more.
     - Does not modify other parts of a webpage
-        - (e.g. the "Am" in "American" will not be detected as a chord)
+        - (e.g. the `Am` in `American` will not be detected as a chord)
 
-## Target audience
-- Musicians who use online chord sheets.
+## Purpose
+- Musicians often use online chord sheets.
 - Many websites force users to pay for automatic transposition.
+- Transposer works on any site that embeds chords as text rather than graphics.
+    - [Example](https://tabs.ultimate-guitar.com/tab/jacob-collier/fix-you-chords-3366179):
 ![large-screenshot](docs/images/large-screenshot.png)
 
 ## Milestones
@@ -39,3 +41,5 @@ Transposer is a Chrome Extension for quickly transposing chords on websites.
 
 ## How You Can Contribute
 Feel free to submit an issue / fork / pull request!
+
+Built by [*Benjamin Lim*](https://github.com/itzblim)
