@@ -1,5 +1,9 @@
 // Content script runs on every webpage visited
 
+chrome.storage.sync.set({key: value}, function() {
+    console.log('Value is set to ' + value);
+});
+
 // Listen for messages from the popup.
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
     // First, validate the message's structure.
