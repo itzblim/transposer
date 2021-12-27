@@ -6,7 +6,9 @@ let keySelector = document.getElementById("keySelector");
 
 function updatePopup() {
   chrome.storage.sync.get(['offset'], function(result) {
-    offsetButton.innerHTML = result.offset;
+    offsetButton.innerHTML = result.offset > 0
+      ? '+' + result.offset
+      : result.offset;
   });
   chrome.storage.sync.get(['keySelect'], function(result) {
     keySelector.value = result.keySelect;
