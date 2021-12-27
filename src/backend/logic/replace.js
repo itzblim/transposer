@@ -25,5 +25,27 @@ function replaceChords(semitones) {
     chrome.storage.sync.set({offset: offset}, function() {
         console.log('Offset is set to ' + offset);
     });
+    chrome.storage.sync.get(['keySelect'], function(result) {
+        if (result.keySelect !== -1) {
+            const newKeySelect = (result.keySelect + semitones + 24) % 12;
+            chrome.storage.sync.set({keySelect: newKeySelect}, function() {
+                console.log('KeySelect is set to ' + newKeySelect);
+            });
+        }
+    });
     return offset;
+}
+
+// If original key is not set, set to current selection
+// If previous key was chosen, tranpose by the difference between new and old
+function selectKey(key) {
+    chrome.storage.sync.get(['keySelect'], function(result) {
+        if (result.keySelect == -1) {
+            chrome.storage.sync.set({keySelect: key}, function() {
+                console.log('KeySelect is set to ' + key);
+            });
+        } else {
+            return replaceChords(key - result.keySelect);
+        }
+    });
 }

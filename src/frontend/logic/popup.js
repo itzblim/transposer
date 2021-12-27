@@ -4,10 +4,17 @@ let offsetButton = document.getElementById("offsetButton");
 let resetButton = document.getElementById("resetButton");
 let keySelector = document.getElementById("keySelector");
 
-// Load offset from storage every time popup is opened
-chrome.storage.sync.get(['offset'], function(result) {
-  offsetButton.innerHTML = result.offset;
-});
+function updatePopup() {
+  chrome.storage.sync.get(['offset'], function(result) {
+    offsetButton.innerHTML = result.offset;
+  });
+  chrome.storage.sync.get(['keySelect'], function(result) {
+    keySelector.value = result.keySelect;
+  });
+}
+
+// Update popup whenever reopened
+updatePopup();
 
 // Increase button listener
 increaseButton.addEventListener("click", async () => {
@@ -18,7 +25,7 @@ increaseButton.addEventListener("click", async () => {
         chrome.tabs.sendMessage(
             tabs[0].id,
             {from: 'popup', subject: 'increase'},
-            callback => {offsetButton.innerHTML = callback});
+            callback => {});
       });
 });
 
@@ -31,7 +38,7 @@ decreaseButton.addEventListener("click", async () => {
         chrome.tabs.sendMessage(
             tabs[0].id,
             {from: 'popup', subject: 'decrease'},
-            callback => {offsetButton.innerHTML = callback});
+            callback => {});
       });
 });
 
@@ -44,7 +51,7 @@ resetButton.addEventListener("click", async () => {
       chrome.tabs.sendMessage(
           tabs[0].id,
           {from: 'popup', subject: 'reset'},
-          callback => {offsetButton.innerHTML = callback});
+          callback => {});
     });
 });
 
@@ -56,8 +63,14 @@ keySelector.addEventListener("change", async () => {
     }, tabs => {
       chrome.tabs.sendMessage(
           tabs[0].id,
-          this.value,
-          {from: 'popup', subject: 'keySelect'},
-          callback => {offsetButton.innerHTML = callback});
+          {from: 'popup', subject: 'keySelect', key: parseInt(keySelector.value)},
+          callback => {});
     });
+});
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  updatePopup();
+  sendResponse({
+      data: "Popup updated"
+  }); 
 });
