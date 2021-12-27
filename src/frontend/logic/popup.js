@@ -15,59 +15,36 @@ function updatePopup() {
   });
 }
 
-// Update popup whenever reopened
-updatePopup();
+function sendMessage(subject, key = 'undefined') {
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, tabs => {
+    chrome.tabs.sendMessage(
+        tabs[0].id,
+        {from: 'popup', subject: subject, key: key},
+        callback => {});
+  });
+}
 
 // Increase button listener
 increaseButton.addEventListener("click", async () => {
-    chrome.tabs.query({
-        active: true,
-        currentWindow: true
-      }, tabs => {
-        chrome.tabs.sendMessage(
-            tabs[0].id,
-            {from: 'popup', subject: 'increase'},
-            callback => {});
-      });
+    sendMessage('increase');
 });
 
 // Decrease button listener
 decreaseButton.addEventListener("click", async () => {
-    chrome.tabs.query({
-        active: true,
-        currentWindow: true
-      }, tabs => {
-        chrome.tabs.sendMessage(
-            tabs[0].id,
-            {from: 'popup', subject: 'decrease'},
-            callback => {});
-      });
+  sendMessage('decrease');
 });
 
 // Reset button listener
 resetButton.addEventListener("click", async () => {
-  chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    }, tabs => {
-      chrome.tabs.sendMessage(
-          tabs[0].id,
-          {from: 'popup', subject: 'reset'},
-          callback => {});
-    });
+  sendMessage('reset');
 });
 
 // Key selector listener
 keySelector.addEventListener("change", async () => {
-  chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    }, tabs => {
-      chrome.tabs.sendMessage(
-          tabs[0].id,
-          {from: 'popup', subject: 'keySelect', key: parseInt(keySelector.value)},
-          callback => {});
-    });
+  sendMessage('keySelect', parseInt(keySelector.value));
 });
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
@@ -80,3 +57,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     keySelector.remove(0);
   }
 });
+
+// Update popup whenever reopened
+updatePopup();
