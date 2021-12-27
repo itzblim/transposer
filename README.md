@@ -42,4 +42,4 @@ Transposer is a Chrome Extension for quickly transposing chords on websites.
 ## How You Can Contribute
 Feel free to submit an issue / fork / pull request!
 
-Built by [*Benjamin Lim*](https://github.com/itzblim)
+*Built by [Benjamin Lim](https://github.com/itzblim)*
