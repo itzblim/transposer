@@ -36,6 +36,18 @@ function replaceChords(semitones) {
     return offset;
 }
 
+function increaseKey() {
+    replaceChords(1);
+}
+
+function decreaseKey() {
+    replaceChords(-1);
+}
+
+function resetKey() {
+    replaceChords(-offset);
+}
+
 // If original key is not set, set to current selection
 // If previous key was chosen, tranpose by the difference between new and old
 function selectKey(key) {

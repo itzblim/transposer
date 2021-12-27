@@ -15,22 +15,14 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
     // First, validate the message's structure.
     if (msg.from === 'popup') {
         if (msg.subject === 'increase') {
-            replaceChords(1);
-            response(offset);
+            increaseKey();
         } else if (msg.subject === 'decrease') {
-            replaceChords(-1);
-            response(offset);
+            decreaseKey();
         } else if (msg.subject === 'reset') {
-            replaceChords(-offset);
-            response(offset);
+            resetKey();
         } else if (msg.subject === 'keySelect') {
             selectKey(msg.key);
-            response(offset);
-        } else {
-            response('unknown');
         }
-    } else {
-        response('unknown');
     }
 });
 
