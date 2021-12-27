@@ -22,5 +22,8 @@ function replaceChords(semitones) {
             return transpose(chord, semitones);
         });
     }
+    chrome.storage.sync.set({offset: offset}, function() {
+        console.log('Offset is set to ' + offset);
+    });
     return offset;
 }
