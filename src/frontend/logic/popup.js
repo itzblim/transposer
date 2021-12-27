@@ -4,6 +4,7 @@ let offsetButton = document.getElementById("offsetButton");
 let resetButton = document.getElementById("resetButton");
 let keySelector = document.getElementById("keySelector");
 
+// Updates the popup
 function updatePopup() {
   chrome.storage.sync.get(['offset'], function(result) {
     offsetButton.innerHTML = result.offset > 0
@@ -15,6 +16,7 @@ function updatePopup() {
   });
 }
 
+// Sends messages from the popup
 function sendMessage(subject, key = 'undefined') {
   chrome.tabs.query({
     active: true,
@@ -47,6 +49,7 @@ keySelector.addEventListener("change", async () => {
   sendMessage('keySelect', parseInt(keySelector.value));
 });
 
+// Update listener
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.subject == 'update') {
     updatePopup();

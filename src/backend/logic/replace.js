@@ -36,14 +36,17 @@ function replaceChords(semitones) {
     return offset;
 }
 
+// Increase key by 1 semitone
 function increaseKey() {
     replaceChords(1);
 }
 
+// Decrease key by 1 semitone
 function decreaseKey() {
     replaceChords(-1);
 }
 
+// Reset key to original on webpage
 function resetKey() {
     replaceChords(-offset);
 }

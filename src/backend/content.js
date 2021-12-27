@@ -12,7 +12,6 @@ chrome.storage.sync.set({keySelect: -1}, function() {
 
 // Listen for messages from the popup.
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
-    // First, validate the message's structure.
     if (msg.from === 'popup') {
         if (msg.subject === 'increase') {
             increaseKey();
@@ -26,6 +25,7 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
     }
 });
 
+// Listens for updates to storage and tells popup to update itself
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     chrome.runtime.sendMessage({
         subject: 'update'
