@@ -1,7 +1,8 @@
 // Content script runs on every webpage visited
 
-chrome.storage.sync.set({key: value}, function() {
-    console.log('Value is set to ' + value);
+// Reset offset to 0 for every new webpage visit
+chrome.storage.sync.set({offset: 0}, function() {
+    console.log('Offset is set to ' + 0);
 });
 
 // Listen for messages from the popup.

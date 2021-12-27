@@ -4,6 +4,11 @@ let offsetButton = document.getElementById("offsetButton");
 let resetButton = document.getElementById("resetButton");
 let keySelector = document.getElementById("keySelector");
 
+// Load offset from storage every time popup is opened
+chrome.storage.sync.get(['offset'], function(result) {
+  offsetButton.innerHTML = result.offset;
+});
+
 // Increase button listener
 increaseButton.addEventListener("click", async () => {
     chrome.tabs.query({
