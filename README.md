@@ -1,12 +1,19 @@
 # transposer v0.1
 Transposer is a Chrome Extension for quickly transposing chords on websites.
 
+![small-screenshot](docs/images/small-screenshot.png)
+
 ## Features
 - Simple and quick way to tranpose all chords on a webpage to a new key
 - Automatically detects all chords:
     - Support for major, minor, diminished, added, sustained chords, chord inversions and more.
     - Does not modify other parts of a webpage
         - (e.g. the "Am" in "American" will not be detected as a chord)
+
+## Target audience
+- Musicians who use online chord sheets.
+- Many websites force users to pay for automatic transposition.
+![large-screenshot](docs/images/large-screenshot.png)
 
 ## Milestones
 
