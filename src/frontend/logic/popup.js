@@ -71,8 +71,12 @@ keySelector.addEventListener("change", async () => {
 });
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  updatePopup();
-  sendResponse({
-      data: "Popup updated"
-  }); 
+  if (message.subject == 'update') {
+    updatePopup();
+    sendResponse({
+      subject: "Popup updated"
+    }); 
+  } else if (message.subject == 'removeDefaultSelector') {
+    keySelector.remove(0);
+  }
 });

@@ -44,6 +44,11 @@ function selectKey(key) {
             chrome.storage.sync.set({keySelect: key}, function() {
                 console.log('KeySelect is set to ' + key);
             });
+            chrome.runtime.sendMessage({
+                subject: 'removeDefaultSelector'
+            }, function (response) {
+                console.log(response.data);
+            });
         } else {
             return replaceChords(key - result.keySelect);
         }
