@@ -4,8 +4,8 @@ body {
 }
 
 select {
-  background-color: #777777;
-  border: 1px solid #777777;
+  background-color: #979797;
+  border: 1px solid #979797;
   border-radius: 4px;
   box-sizing: border-box;
   color: #FFFFFF;
@@ -26,8 +26,8 @@ select {
 
 button {
   appearance: button;
-  background-color: #777777;
-  border: 1px solid #777777;
+  background-color: #979797;
+  border: 1px solid #979797;
   border-radius: 4px;
   box-sizing: border-box;
   color: #FFFFFF;
@@ -55,17 +55,54 @@ button:focus {
   outline: 0;
 }
 
-button:hover {
-  background-color: #ff9900;
-  border-color: #ff9900;
-}
 
-button:active {
-  background-color: #865100;
-  border-color: #865100;
-}
 
 .off-button {
   width: 114px;
   cursor: default;
+}
+
+.inc-button {
+  background-color: #007c1f;
+  border: 1px solid #007c1f;
+}
+
+.inc-button:hover {
+  background-color: #00b92e;
+  border-color: #00b92e;
+}
+
+.inc-button:active {
+  background-color: #005515;
+  border-color: #005515;
+}
+
+.dec-button {
+  background-color: #960000;
+  border: 1px solid #960000;
+}
+
+.dec-button:hover {
+  background-color: #e00000;
+  border-color: #e00000;
+}
+
+.dec-button:active {
+  background-color: #550000;
+  border-color: #550000;
+}
+
+.res-button {
+  background-color: #cf6400;
+  border: 1px solid #cf6400;
+}
+
+.res-button:hover {
+  background-color: #ff9900;
+  border-color: #ff9900;
+}
+
+.res-button:active {
+  background-color: #865100;
+  border-color: #865100;
 }
