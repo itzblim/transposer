@@ -6,7 +6,9 @@ let keySelector = document.getElementById("keySelector");
 
 function updatePopup() {
   chrome.storage.sync.get(['offset'], function(result) {
-    offsetButton.innerHTML = result.offset;
+    offsetButton.innerHTML = result.offset > 0
+      ? '+' + result.offset
+      : result.offset;
   });
   chrome.storage.sync.get(['keySelect'], function(result) {
     keySelector.value = result.keySelect;
@@ -69,8 +71,12 @@ keySelector.addEventListener("change", async () => {
 });
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  updatePopup();
-  sendResponse({
-      data: "Popup updated"
-  }); 
+  if (message.subject == 'update') {
+    updatePopup();
+    sendResponse({
+      subject: "Popup updated"
+    }); 
+  } else if (message.subject == 'removeDefaultSelector') {
+    keySelector.remove(0);
+  }
 });

@@ -36,8 +36,8 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
 
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     chrome.runtime.sendMessage({
-        data: "update"
+        subject: 'update'
     }, function (response) {
-        console.log(response);
+        console.log(response.subject);
     });
 });
