@@ -38,6 +38,6 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     chrome.runtime.sendMessage({
         data: "update"
     }, function (response) {
-        console.log(response);
+        console.log(response.data);
     });
 });
