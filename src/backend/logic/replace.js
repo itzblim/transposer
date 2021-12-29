@@ -6,8 +6,9 @@ const regex = /\b(A|B|C|D|E|F|G)(|b|#)(|m|M|maj|Maj)(|dim)(|add)(|M)(|2|4|6|7|9|
 // Elements to search through
 const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, td, caption, span, a');
 
-// Keep track of offset from original key
+// Initialize offset and keySelect for every new page visited
 let offset = 0;
+let keySelect = -1;
 
 // Replaces chords by transposing them by a number of semitones
 function replaceChords(semitones) {
@@ -22,18 +23,9 @@ function replaceChords(semitones) {
             return transpose(chord, semitones);
         });
     }
-    chrome.storage.sync.set({offset: offset}, function() {
-        console.log('Offset is set to ' + offset);
-    });
-    chrome.storage.sync.get(['keySelect'], function(result) {
-        if (result.keySelect !== -1) {
-            const newKeySelect = (result.keySelect + semitones + 24) % 12;
-            chrome.storage.sync.set({keySelect: newKeySelect}, function() {
-                console.log('KeySelect is set to ' + newKeySelect);
-            });
-        }
-    });
-    return offset;
+    if (keySelect !== -1) {
+        keySelect = (keySelect + semitones + 24) % 12;
+    }
 }
 
 // Increase key by 1 semitone
@@ -54,18 +46,14 @@ function resetKey() {
 // If original key is not set, set to current selection
 // If previous key was chosen, tranpose by the difference between new and old
 function selectKey(key) {
-    chrome.storage.sync.get(['keySelect'], function(result) {
-        if (result.keySelect == -1) {
-            chrome.storage.sync.set({keySelect: key}, function() {
-                console.log('KeySelect is set to ' + key);
-            });
-            chrome.runtime.sendMessage({
-                subject: 'removeDefaultSelector'
-            }, function (response) {
-                console.log(response.data);
-            });
-        } else {
-            return replaceChords(key - result.keySelect);
-        }
-    });
+    if (keySelect == -1) {
+        keySelect = key;
+        chrome.runtime.sendMessage({
+            subject: 'removeDefaultSelector'
+        }, function (response) {
+            console.log(response.data);
+        });
+    } else {
+        replaceChords(key - keySelect);
+    }
 }
