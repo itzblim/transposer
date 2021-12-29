@@ -6,32 +6,33 @@ let keySelector = document.getElementById("keySelector");
 
 // Updates the popup
 function updatePopup() {
-  chrome.storage.sync.get(['offset'], function(result) {
-    offsetButton.innerHTML = result.offset > 0
-      ? '+' + result.offset
-      : result.offset;
-  });
-  chrome.storage.sync.get(['keySelect'], function(result) {
-    keySelector.value = result.keySelect;
-  });
+  sendMessage(
+    'getTabInfo',
+    'undefined',
+    function(callback) {
+      offsetButton.innerHTML = callback.offset > 0
+      ? '+' + callback.offset
+      : callback.offset;
+      keySelector.value = callback.keySelect;
+    });
 }
 
 // Sends messages from the popup
-function sendMessage(subject, key = 'undefined') {
+function sendMessage(subject, data = 'undefined',callbackFunction = callback => {updatePopup();}) {
   chrome.tabs.query({
     active: true,
     currentWindow: true
   }, tabs => {
     chrome.tabs.sendMessage(
         tabs[0].id,
-        {from: 'popup', subject: subject, key: key},
-        callback => {});
+        {from: 'popup', subject: subject, data: data},
+        callbackFunction);
   });
 }
 
 // Increase button listener
 increaseButton.addEventListener("click", async () => {
-    sendMessage('increase');
+  sendMessage('increase');
 });
 
 // Decrease button listener
@@ -51,12 +52,7 @@ keySelector.addEventListener("change", async () => {
 
 // Update listener
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.subject == 'update') {
-    updatePopup();
-    sendResponse({
-      subject: "Popup updated"
-    }); 
-  } else if (message.subject == 'removeDefaultSelector') {
+  if (message.subject == 'removeDefaultSelector') {
     keySelector.remove(0);
   }
 });

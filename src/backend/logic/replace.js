@@ -50,9 +50,7 @@ function selectKey(key) {
         keySelect = key;
         chrome.runtime.sendMessage({
             subject: 'removeDefaultSelector'
-        }, function (response) {
-            console.log(response.data);
-        });
+        }, callback => {});
     } else {
         replaceChords(key - keySelect);
     }

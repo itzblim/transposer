@@ -1,7 +1,7 @@
 // Content script runs on every webpage visited
 
 // Listen for messages from the popup.
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.from === 'popup') {
         if (msg.subject === 'increase') {
             increaseKey();
@@ -10,16 +10,12 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
         } else if (msg.subject === 'reset') {
             resetKey();
         } else if (msg.subject === 'keySelect') {
-            selectKey(msg.key);
+            selectKey(msg.data);
+        } else if (msg.subject === 'getTabInfo') {
+            sendResponse({
+                offset: offset,
+                keySelect: keySelect
+            });
         }
     }
-});
-
-// Listens for updates to storage and tells popup to update itself
-chrome.storage.onChanged.addListener(function (changes, namespace) {
-    chrome.runtime.sendMessage({
-        subject: 'update'
-    }, function (response) {
-        console.log(response.subject);
-    });
 });
