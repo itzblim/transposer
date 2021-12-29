@@ -46,11 +46,8 @@ function resetKey() {
 // If original key is not set, set to current selection
 // If previous key was chosen, tranpose by the difference between new and old
 function selectKey(key) {
-    if (keySelect == -1) {
+    if (keySelect === -1) {
         keySelect = key;
-        chrome.runtime.sendMessage({
-            subject: 'removeDefaultSelector'
-        }, callback => {});
     } else {
         replaceChords(key - keySelect);
     }
