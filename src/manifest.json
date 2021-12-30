@@ -23,5 +23,21 @@
     "action": {
         "default_popup": "frontend/popup.html",
         "default_title": "Transpose chords on this page"
-    }
+    },
+    "commands": {
+        "increase-key": {
+          "suggested_key": {
+            "default": "Ctrl+Shift+Up",
+            "mac": "Command+Shift+Up"
+          },
+          "description": "Increase the key by one semitone"
+        },
+        "decrease-key": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+Down",
+              "mac": "Command+Shift+Down"
+            },
+            "description": "Decrease the key by one semitone"
+          }
+      }
   }
