@@ -32,7 +32,7 @@ Transposer is an open source Chrome Extension for quickly transposing chords on 
     - Allow users to see the offset from the original key :white_check_mark:
     - Allow users to return to the original key with a single click :white_check_mark:
     - Allow multiple instances of extension in different tabs/windows :white_check_mark:
-    - Allow keyboard shortcuts to change the key white_check_mark:
+    - Allow keyboard shortcuts to change the key :white_check_mark:
     - Provide a user friendly interface :white_check_mark:
     - Perform testing and resolve edge cases
 - Publish on the Chrome Web Store
