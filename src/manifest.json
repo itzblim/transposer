@@ -11,6 +11,7 @@
           "js": [
               "backend/logic/transpose.js",
               "backend/logic/replace.js",
+              "backend/logic/message.js",
               "backend/content.js"
           ]
       }
@@ -21,22 +22,21 @@
         "tabs"
     ],
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "service_worker": "backend/background.js"
     },
     "action": {
         "default_popup": "frontend/popup.html",
         "default_title": "Transpose chords on this page"
     },
     "commands": {
-        "increase-key": {
+        "increase-command": {
           "suggested_key": {
             "default": "Ctrl+Shift+Up",
             "mac": "Command+Shift+Up"
           },
           "description": "Increase the key by one semitone"
         },
-        "decrease-key": {
+        "decrease-command": {
             "suggested_key": {
               "default": "Ctrl+Shift+Down",
               "mac": "Command+Shift+Down"

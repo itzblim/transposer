@@ -17,5 +17,13 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                 keySelect: keySelect
             });
         }
+    } else if (msg.from === 'background') {
+        if (msg.subject === 'increase-command') {
+            increaseKey();
+            requestPopupUpdate();
+        } else if (msg.subject === 'decrease-command') {
+            decreaseKey();
+            requestPopupUpdate();
+        }
     }
 });

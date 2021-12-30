@@ -18,5 +18,12 @@ keySelector.addEventListener("change", async () => {
   sendMessage('keySelect', parseInt(keySelector.value));
 });
 
+// Update listener
+chrome.runtime.onMessage.addListener((msg, sender) => {
+  if ((msg.from === 'content') && (msg.subject === 'updatePopup')) {
+    updatePopup();
+  }
+});
+
 // Update popup whenever opened
 updatePopup();
