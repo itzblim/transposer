@@ -43,5 +43,9 @@
             },
             "description": "Decrease the key by one semitone"
           }
-      }
-  }
+    },
+    "icons": {
+        "48": "style/images/icon48.png",
+        "128": "style/images/icon128.png"
+    }
+}
