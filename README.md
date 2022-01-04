@@ -47,6 +47,6 @@ Transposer is an open source Chrome Extension for quickly transposing chords on 
 - Automatically identify the original key of a song
 
 ## How You Can Contribute
-Feel free to submit an issue / fork / pull request!
+Feel free to submit an issue / fork / pull request [here](https://github.com/itzblim/transposer/issues)!
 
 *Built by [Benjamin Lim](https://github.com/itzblim)*
