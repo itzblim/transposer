@@ -1,4 +1,4 @@
-![logo](src/frontend/style/images/icon512.png)
+![logo](src/frontend/style/images/icon128.png)
 
 # transposer v0.0.0.1
 Transposer is an open source Chrome Extension for quickly transposing chords on websites.
